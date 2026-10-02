@@ -37,14 +37,8 @@ public:
 };
 
 class FoodManager {
-private:
-    Food foods[MAX]; 
-    int foodCount = 0; 
-    
-    string toLowerString(string str) {
-        transform(str.begin(), str.end(), str.begin(), ::tolower);
-        return str;
-    }
+    int foodCount  = 0;
+    Food foods[MAX];
 
 public:
     void inputList() {
@@ -76,9 +70,10 @@ public:
     }
 
     int findFoodIndex(string key) {
-        string lowerKey = toLowerString(key);
+        cout << "Enter the id or name of the food u wanna find: ";
+        getline (cin, key);
         for (int i = 0; i < foodCount; i++) {
-            if (toLowerString(foods[i].id) == lowerKey || toLowerString(foods[i].name) == lowerKey) {
+            if (foods[i].id == key ||(foods[i].name) == key) {
                 return i; 
             }
         }
