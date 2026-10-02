@@ -12,19 +12,11 @@ private:
 public: 
 
     // Constructor mặc định (Không tham số)
-    Food() {
-        id = "";
-        name = "";
-        price = 0;
-        quantity = 0;
-    }
+    Food() : id(""), name(""), price(0.0), quantity(0) {}
 
     // Constructor có tham số (Dùng để khởi tạo dữ liệu nhanh ở main)
-    Food(string i, string n, double p, int q) {
-        id = i;
-        name = n;
-        price = p;
-        quantity = q;
+    Food(string i, string n, double p, int q): id(i), name(n), price(p), quantity(q) {
+        cout << "Da khoi tao constructor co tham so" << endl;
     }
 
     void input() {
@@ -42,16 +34,16 @@ public:
         cin >> quantity;
         cin.ignore(); 
     }
-
+    
     void display() {
         cout << "\n[ID: " << id << "] " << name << " - " << price << " (" << quantity << " products)" << endl;
     }
 
     // Các hàm Getter (Lấy dữ liệu ra)
-    string getId() { return id; }
-    string getName() { return name; }
-    double getPrice() { return price; }
-    int getQuantity() { return quantity; }
+    string getId() const { return id; }
+    string getName() const { return name; }
+    double getPrice() const { return price; }
+    int getQuantity() const { return quantity; }
 
     // Các hàm Setter (Cập nhật dữ liệu từ bên ngoài vào private)
     void setId(string i) { id = i; }
