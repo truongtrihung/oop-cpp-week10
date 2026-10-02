@@ -28,7 +28,7 @@ public:
     }
 
     void input() {
-        // Nếu trước đó có lệnh cin ở main, dùng cin.ignore() để tránh trôi lệnh getline
+        
         cout << "Nhap ID: ";
         getline(cin, id);
 
@@ -40,7 +40,7 @@ public:
 
         cout << "Nhap so luong: ";
         cin >> quantity;
-        cin.ignore(); // Xóa bộ nhớ đệm để không ảnh hưởng lần nhập sau
+        cin.ignore(); 
     }
 
     void display() {
