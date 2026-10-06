@@ -48,7 +48,7 @@ public:
     // Các hàm Setter (Cập nhật dữ liệu từ bên ngoài vào private)
     void setId(string i) { id = i; }
     void setName(string n) { name = n; }
-    
+
     void setPrice(double p) { // Đổi tên từ getPrice thành setPrice cho đúng bản chất
         if (p > 0) price = p;
     }
