@@ -11,7 +11,7 @@ private:
     string bookID;
     string title;
     string author;
-    int year;
+    int year; 
 
 public:
     // Constructor without parameters
@@ -51,6 +51,17 @@ public:
         }
     }
 
+    // 3. Find book with ID
+    void findBook (string idSearch, int n){
+        for (int i = 0; i < n; i++){
+            if (idSearch == bookID){
+                cout << "\n --> Found the book ---" << endl;
+                displayBook(i);
+                return;
+            }
+        }
+    }
+
 };
 
 int main(){
@@ -85,7 +96,7 @@ int main(){
         }
     }
     else if (choice  == 3){
-
+        
     }
     else if (choice == 4){
         break;
