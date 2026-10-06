@@ -32,7 +32,7 @@ public:
     } 
 
     void displayFood() const {
-        cout << "   | " << id << " |" << name 
+        cout << " | " << id << " | " << name 
              << " | Gia: " << price << " | So luong: " 
              << quantity << endl; 
     } 
@@ -69,14 +69,14 @@ int main(){
     cin.ignore();
     
     for (int i = 0; i < n; i++){
-        FOOD f("", "", 0.0, 0);
+        FOOD f("", "", 0.0, 0);     // constructor
         cout << "\n === NHAP THONG TIN MON " << i + 1 << " ===\n";
         f.inputFood();      // gọi hàm public
         menu.push_back(f);  // Lưu món ăn vào menu 
     }
 
     cout << "\n === Danh sach mon an ===\n ";
-    for (const FOOD& f : menu) {
+    for (const FOOD& f : menu) { // const: dùng để đọc và không thể sửa dữ liệu trong f
         f.displayFood();    // gọi hàm public
     }
 
@@ -87,11 +87,15 @@ int main(){
     int amount; cin >> amount;
 
     bool found = false;
-    for (FOOD& f : menu){
+    for (FOOD& f : menu){ // const: cho phép tương tác và thay đổi trực tiếp của f
         if (f.getID() == id){   // gọi hàm public
             if (f.reduceQuantity(amount)){
                 cout << "Giam so luong thanh cong!\n";
                 found  = true;
+                cout << "\n === Danh sach mon an sau khi cap nhat ===\n";
+                for (const FOOD& f : menu){
+                    f.displayFood();
+                }
             } else{
                 cout << "Khong du so luong!\n";
             }
