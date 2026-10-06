@@ -31,7 +31,7 @@ public:
         cin.ignore() ;
     } 
 
-    void displayFood(){
+    void displayFood() const {
         cout << "   | " << id << " |" << name 
              << " | Gia: " << price << " | So luong: " 
              << quantity << endl; 
@@ -55,9 +55,27 @@ public:
     }           
     
     // Hàm Getter
-    string getID() const;               
-    string getName() const;             
-    double getPrice() const;            
-    int getQuantity() const;            
-    
+    string getID() const { return id; }               
+    string getName() const { return name;}             
+    double getPrice() const { return price; }           
+    int getQuantity() const { return quantity; }              
 };
+
+int main(){
+    vector <FOOD> menu;
+    int n;
+    cout << "Nhap so luong mon an: ";
+    cin >> n;
+    cin.ignore();
+    
+    for (int i = 0; i < n; i++){
+        FOOD f("", "", 0.0, 0);
+        cout << "\n === NHAP THONG TIN MON " << i + 1 << " ===\n";
+        f.inputFood();      // gọi hàm public
+    }
+
+    cout << "\n === Danh sach mon an ===\n ";
+    for (const FOOD& f : menu) {
+        f.displayFood();    // gọi hàm public
+    }
+}
