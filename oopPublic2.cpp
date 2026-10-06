@@ -78,4 +78,26 @@ int main(){
     for (const FOOD& f : menu) {
         f.displayFood();    // gọi hàm public
     }
+
+    cout << "\n Nhap ma mon an can giam so luong: ";
+    string id; getline (cin, id);
+
+    cout << "Nhap so luong can giam: ";
+    int amount; cin >> amount;
+
+    bool found = false;
+    for (FOOD& f : menu){
+        if (f.getID() == id){   // gọi hàm public
+            if (f.reduceQuantity(amount)){
+                cout << "Giam so luong thanh cong!\n";
+                found  = true;
+            } else{
+                cout << "Khong du so luong!\n";
+            }
+            break;
+        }
+        if (!found) cout << "Khong tim thay mon an!\n";
+    }
+
+    return 0;
 }
