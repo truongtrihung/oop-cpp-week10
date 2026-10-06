@@ -72,6 +72,7 @@ int main(){
         FOOD f("", "", 0.0, 0);
         cout << "\n === NHAP THONG TIN MON " << i + 1 << " ===\n";
         f.inputFood();      // gọi hàm public
+        menu.push_back(f);  // Lưu món ăn vào menu 
     }
 
     cout << "\n === Danh sach mon an ===\n ";
@@ -96,8 +97,8 @@ int main(){
             }
             break;
         }
-        if (!found) cout << "Khong tim thay mon an!\n";
     }
-
+    if (!found) cout << "Khong tim thay mon an!\n";
+    
     return 0;
 }
