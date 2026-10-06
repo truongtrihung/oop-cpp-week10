@@ -14,8 +14,6 @@ private:
     int quantity;
 
 public:
-    int foodCount = 0;
-
     // Default constructor (without parameters)
     FOOD() : id (""), name (""), price (0.0), quantity (0) {}
 
