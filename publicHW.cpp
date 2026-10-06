@@ -26,42 +26,15 @@ public:
         cout << "Nhap ten sach      : "; getline (cin, title);
         cout << "Nhap ten tac gia   : "; getline (cin, author);
         cout << "Nhap nam xuat ban  : "; cin >> year;
-        
     }
 
-    // 2. Hiển thị danh sách sách
-    void displayBook(int n) const {
-        cout << " =====   DANH SACH SACH ===== " << endl;
-        cout << "Ma sach        " << "Ten sach      " << "Tac gia       " << "Nam       " << endl;
-        for (int i = 0; i < n; i++){
-            cout << bookID << "         " << title << "             " << author << "            " << year << "          " << endl;
-        }
+    // 2. Hiển thị thông tin 1 quyển sách
+    void displayBook() const {
+        cout << bookID << "\t\t" << title << "\t\t" << author << "\t\t" << year << endl;
     }
 
-    // 1. Add book
-    void addBook (int n){
-        if (n < MAX){
-            cout << "\n === ADD NEW BOOK ===\n";
-            inputBook();
-            n++;
-            cout << " --> Them sach thanh cong! ---" << endl;
-        }
-        else {
-            cout << " --> Danh sach het cho ---" << endl;
-        }
-    }
-
-    // 3. Find book with ID
-    void findBook (string idSearch, int n){
-        for (int i = 0; i < n; i++){
-            if (idSearch == bookID){
-                cout << "\n --> Found the book ---" << endl;
-                displayBook(i);
-                return;
-            }
-        }
-    }
-
+    // Getter lấy mã sách để phục vụ tìm kiếm ở hàm main
+    string getBookID () const {return bookID;}
 };
 
 int main(){
@@ -69,12 +42,13 @@ int main(){
     int n;
     cout << "Nhap so luong sach : ";
     cin >> n;
+    cin.ignore();
 
     for (int i = 0; i < n ; i++){
-        BOOK f("", "", "", 0);  // constructor
+        BOOK b("", "", "", 0);  // constructor
         cout << " === Nhap thong tin sach " << i + 1 << " ===" << endl;
-        f.inputBook() ;     // gọi hàm public
-        list.push_back(f);  // Lưu danh sách vào f
+        b.inputBook() ;     // gọi hàm public
+        list.push_back(b);  // Lưu danh sách vào f
     }
 
     while (true){
@@ -86,20 +60,52 @@ int main(){
 
     int choice;
     cout << "Chon chuc nang: "; cin >> choice;
-
+    cin.ignore();
+    
     if (choice == 1){
-        
+        BOOK b;
+        cout << "\n === THEM SACH MOI ===" << endl;
+        b.inputBook();
+        list.push_back(b);
+        cout << "\n --> Them sach thanh cong!" << endl;
     }
-    else if (choice  == 2){
-        for (const BOOK& f : list){
-            f.displayBook(n);
+    else if (choice == 2){
+        if (list.empty()){
+            cout << "Danh sach hien dang trong" << endl;
+        }
+        else{
+            cout << "\n === DANH SACH SACH ===" << endl;
+            cout << "Ma sach\t\tTen sach\t\tTac gia\t\tNam XB\n";
+            for (const BOOK& b : list){
+                b.displayBook();
+            }
         }
     }
-    else if (choice  == 3){
-        
+    else if (choice == 3){
+        cout << "Nhap id sach can tim: ";
+        string idSearch; getline (cin, idSearch);
+
+        bool found  = false;
+        for (const BOOK& b : list){
+            if (b.getBookID() == idSearch){
+                cout << "\n --> Da tim thay sach: " << endl;
+                cout << "Ma sach\t\tTen sach\t\tTac gia\t\tNam XB\n";
+                b.displayBook();
+                found = true;
+                break;
+            }
+        }
+        if (!found){
+            cout << "\n --> Khong tim thay sach nao co ma: " << idSearch << endl;
+        }
     }
+
     else if (choice == 4){
+        cout << "Thoat chuong trinh" << endl;
         break;
+    }
+    else {
+        cout << "Lua chon khong hop le, vui long chon lai" << endl;
     }
     }
 
